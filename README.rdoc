@@ -1,8 +1,8 @@
 == README
 
-# Using javascript with rails 
+== Using javascript with rails 
 
-## Features
+== Features
 
 * Using ujs and coffescript and some fancy bootstrap snippets
 
@@ -11,5 +11,8 @@
 * You can update, edit or delete it without full page load
 
 * that's it enjoy :) 
+
+
+
 
 
