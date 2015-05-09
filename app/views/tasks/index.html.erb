@@ -1,0 +1,87 @@
+<%if notice %>
+<p id="notice" class= "fade" data-dismiss="alert"><%= notice %></p>
+<% end %>
+<div class="container">
+<h1>Listing Tasks</h1>
+<div class="row">
+<!-- Button trigger modal -->
+<div class="pull-right">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" >
+  Add Task
+</button>
+</div>
+
+</div>
+<br>
+<div class="tasks">
+<div class="row">
+  <div class="col-sm-6">
+  <h3>Finished Task</h3>
+    <div id="finished-task">  
+      <% @tasks.each do |task| %>
+      <% if task.completed%>
+      <div id="task_<%= task.id %>">
+        
+          <%= form_for(task, remote: true) do |f| %>
+            <%= f.check_box :completed%>
+            <%= f.submit %>
+          <%= f.label :completed, task.name %>
+            <%= link_to 'Delete', task, method: :delete,remote: true%>
+            
+          <% end %>
+        </div>
+        <% end %>
+
+        <% end %>
+      
+  </div>
+  </div>
+
+  <div class="col-sm-6">
+  <h3>Unfinished Task</h3>
+    <div id="unfinished-task">
+      <% @tasks.each do |task| %>
+      <% if !task.completed%>
+      <div id="task_<%= task.id %>">
+        <%= form_for(task, remote: true) do |f| %>      
+        
+          <%= f.check_box :completed%>
+          <%= f.submit %>
+          <%= f.label :completed, task.name %>
+        
+          <%= link_to 'Delete', task, method: :delete,remote: true%>
+        
+        <% end %>  
+
+        </div>
+        
+      <% end %>
+      <% end %>
+  </div>
+  </div>
+</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Project</h4>
+      </div>
+      <div class="modal-body">
+
+        <%= render 'tasks/form'%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>

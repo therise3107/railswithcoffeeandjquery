@@ -1,0 +1,8 @@
+<div id = "task_<%= @task.id%>">
+    <%= form_for(@task, remote: true) do |f| %>
+           <%= f.check_box :completed%>
+           <%= f.submit %>
+        <%= f.label :completed, @task.name %>
+            <%= link_to 'Delete', @task, method: :delete,remote: true%>
+   <% end %>
+</div>

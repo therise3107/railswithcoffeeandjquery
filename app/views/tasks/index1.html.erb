@@ -1,0 +1,48 @@
+<%if notice %>
+<p id="notice" class= "fade" data-dismiss="alert"><%= notice %></p>
+<% end %>
+<div class="container">
+<h1>Listing Tasks</h1>
+
+<br>
+<div class="tasks">
+  <% @tasks.each do |task| %>
+    <div id="task_<%= task.id %>">
+      
+        <h4><%= task.name %></h4>
+         <%= link_to 'Delete', task, method: :delete, data: [confirm: 'are you sure?'], remote: true%>
+      
+      </div>
+    
+    <% end %>
+</div>
+
+<!-- Button trigger modal -->
+<div class="pull-right">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" >
+  Add Task
+</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Project</h4>
+      </div>
+      <div class="modal-body">
+
+        <%= render 'tasks/form'%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
